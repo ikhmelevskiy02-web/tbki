@@ -2,3 +2,7 @@
 upload/
 assets/fonts/*
 !assets/fonts/README.md
+.env
+.env.*
+!.env.example
+dist/
