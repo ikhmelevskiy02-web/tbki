@@ -1,0 +1,4 @@
+.DS_Store
+upload/
+assets/fonts/*
+!assets/fonts/README.md
