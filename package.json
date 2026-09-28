@@ -1,0 +1,9 @@
+{
+  "name": "tbki-support-assistant",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "npm run build && node dev.mjs"
+  }
+}
