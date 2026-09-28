@@ -53,6 +53,17 @@
           <div class="search-hint">Например: «отзыв согласия», «запрос от представителя», «кредитный отчёт»</div>
         </div>
 
+        <section class="ai-panel" aria-labelledby="ai-title">
+          <div class="ai-panel-top"><div><div class="eyebrow small">ИИ-ПОМОЩНИК</div><h2 id="ai-title">Подготовить черновик ответа</h2></div><span class="ai-badge"><span></span> ТЕСТОВЫЙ РЕЖИМ</span></div>
+          <label class="ai-question-label" for="ai-question">Опишите ситуацию без данных клиента</label>
+          <textarea id="ai-question" rows="3" maxlength="1800" placeholder="Например: субъект просит удалить сведения о договоре, который ему не принадлежит"></textarea>
+          <div class="ai-panel-foot"><p>Не вводите ФИО, паспортные данные, контакты и сведения из кредитной истории. При генерации вопрос и подходящие фрагменты шаблонов передаются выбранному ИИ-сервису.</p><button id="ai-generate" type="button"><span>✦</span> Сформировать черновик</button></div>
+          <div class="ai-result" id="ai-result" hidden aria-live="polite">
+            <div class="ai-result-head"><span id="ai-status">Черновик ответа</span><button id="ai-copy" type="button" hidden>Скопировать</button></div>
+            <div class="ai-result-text" id="ai-result-text"></div>
+          </div>
+        </section>
+
         <div class="section-heading"><div><div class="eyebrow small">БЫСТРЫЙ ДОСТУП</div><h2>Популярные разделы</h2></div><button class="text-link" data-go="scenarios">Все сценарии <span>→</span></button></div>
 
         <div class="quick-grid">
