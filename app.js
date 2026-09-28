@@ -100,6 +100,33 @@ $$('[data-view]').forEach(button=>button.addEventListener("click",()=>showView(b
 $$('[data-go]').forEach(button=>button.addEventListener("click",()=>showView(button.dataset.go)));
 document.addEventListener("click",event=>{const button=event.target.closest("[data-open]");if(button)openCase(button.dataset.open);});
 $("#global-search").addEventListener("keydown",event=>{if(event.key==="Enter"){showView("scenarios");$("#scenario-search").value=event.currentTarget.value;searchCases(event.currentTarget.value);$("#scenario-search").focus();}});
+const aiQuestion=$("#ai-question");
+const aiGenerate=$("#ai-generate");
+const aiResult=$("#ai-result");
+const aiStatus=$("#ai-status");
+const aiResultText=$("#ai-result-text");
+const aiCopy=$("#ai-copy");
+function relevantCases(question){
+  const stop=new Set(["это","как","что","для","или","мне","нам","прошу","можно","нужно","есть","при","его","её","они","она","ему","этот","этой","сведения","субъект","ответ","запрос"]);
+  const terms=[...new Set((question.toLocaleLowerCase("ru").match(/[а-яёa-z0-9-]{3,}/g)||[]).filter(word=>!stop.has(word)))];
+  return cases.map(item=>{
+    const haystack=`${item.title} ${item.short} ${item.query} ${item.keywords} ${item.answer}`.toLocaleLowerCase("ru");
+    return {item,score:terms.reduce((sum,word)=>sum+(haystack.includes(word)?1:0),0)};
+  }).filter(row=>row.score>0).sort((a,b)=>b.score-a.score).slice(0,3).map(({item})=>({title:item.title,query:item.query,answer:item.answer}));
+}
+aiGenerate.addEventListener("click",async()=>{
+  const question=aiQuestion.value.trim();
+  if(question.length<8){aiResult.hidden=false;aiStatus.textContent="Добавьте описание ситуации";aiResultText.textContent="Опишите вопрос чуть подробнее, чтобы подготовить черновик.";aiCopy.hidden=true;aiQuestion.focus();return;}
+  aiGenerate.disabled=true;aiGenerate.innerHTML="<span>…</span> Готовлю черновик";aiResult.hidden=false;aiStatus.textContent="Подбираю подходящие материалы…";aiResultText.textContent="";aiCopy.hidden=true;
+  try{
+    const response=await fetch("/api/assistant",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question,context:relevantCases(question)})});
+    const payload=await response.json().catch(()=>({}));
+    if(!response.ok)throw new Error(payload.error||"Не удалось получить ответ. Попробуйте ещё раз.");
+    aiStatus.textContent="Черновик ответа · проверьте факты перед использованием";aiResultText.textContent=payload.answer||"Сервис не вернул текст ответа.";aiCopy.hidden=!payload.answer;
+  }catch(error){aiStatus.textContent="Не удалось сформировать ответ";aiResultText.textContent=error.message||"Проверьте подключение и повторите попытку.";}
+  finally{aiGenerate.disabled=false;aiGenerate.innerHTML="<span>✦</span> Сформировать черновик";}
+});
+aiCopy.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(aiResultText.textContent);aiCopy.textContent="Скопировано";}catch{aiStatus.textContent="Выделите черновик и скопируйте вручную";}});
 $("#scenario-search").addEventListener("input",event=>searchCases(event.target.value));
 $$('.filter-chip').forEach(button=>button.addEventListener("click",()=>{$$('.filter-chip').forEach(chip=>chip.classList.remove("selected"));button.classList.add("selected");currentFilter=button.dataset.filter==="all"?"all":button.dataset.filter;searchCases($("#scenario-search").value);}));
 $("#data-search").addEventListener("input",event=>renderData(event.target.value));
