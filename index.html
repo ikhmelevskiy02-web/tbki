@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Внутренний ассистент поддержки Т-БКИ: поиск по типовым обращениям, процедурам и правилам предоставления сведений.">
+  <title>Ассистент поддержки — Т-БКИ</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Основная навигация">
+      <a class="brand" href="#overview" aria-label="Т-БКИ — главная">
+        <span class="brand-mark">Т</span><span class="brand-name">Т-БКИ</span>
+        <span class="brand-caption">БЮРО КРЕДИТНЫХ ИСТОРИЙ</span>
+      </a>
+
+      <div class="nav-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+      <nav class="nav-list">
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span>Главная</button>
+        <button class="nav-item" data-view="scenarios"><span class="nav-icon">▤</span>Типовые обращения<span class="nav-count">06</span></button>
+        <button class="nav-item" data-view="process"><span class="nav-icon">↗</span>Обработка обращений</button>
+        <button class="nav-item" data-view="data"><span class="nav-icon">▦</span>Кому какие данные</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="secure-note"><span class="secure-dot"></span><div><b>Внутренний инструмент</b><small>Не содержит данных клиентов</small></div></div>
+        <div class="sidebar-version">Версия прототипа <span>0.1</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Т-БКИ</span><span class="crumb-sep">/</span><span id="crumb-current">Рабочее пространство</span></div>
+        <div class="topbar-right"><span class="source-status"><i></i> База знаний · черновик</span><span class="avatar">П</span></div>
+      </header>
+
+      <section class="view active" id="view-overview">
+        <div class="welcome-row">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span>ПОДДЕРЖКА · Т-БКИ</div>
+            <h1>Чем помочь<br><span>сегодня?</span></h1>
+            <p class="lead">Найдите подходящий сценарий и подготовьте ответ<br class="desktop-only"> по материалам базы знаний.</p>
+          </div>
+          <div class="hero-stamp" aria-hidden="true"><span class="stamp-t">Т</span><span class="stamp-orbit"></span><span class="stamp-dot"></span></div>
+        </div>
+
+        <div class="search-wrap">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="global-search" type="search" placeholder="Опишите вопрос или введите ключевые слова" autocomplete="off" aria-label="Поиск по базе знаний">
+          <kbd>↵</kbd>
+          <div class="search-hint">Например: «отзыв согласия», «запрос от представителя», «кредитный отчёт»</div>
+        </div>
+
+        <div class="section-heading"><div><div class="eyebrow small">БЫСТРЫЙ ДОСТУП</div><h2>Популярные разделы</h2></div><button class="text-link" data-go="scenarios">Все сценарии <span>→</span></button></div>
+
+        <div class="quick-grid">
+          <button class="quick-card quick-yellow" data-open="advertising">
+            <span class="quick-icon icon-sun">↗</span><span class="quick-num">01</span>
+            <b>Отзыв согласия<br>на рекламу</b><small>Типовой ответ субъекту</small><span class="card-arrow">↗</span>
+          </button>
+          <button class="quick-card" data-open="third-party">
+            <span class="quick-icon icon-dark">↔</span><span class="quick-num">02</span>
+            <b>Передача данных<br>третьим лицам</b><small>Разграничить основание запроса</small><span class="card-arrow">↗</span>
+          </button>
+          <button class="quick-card" data-go="process">
+            <span class="quick-icon icon-dark">≡</span><span class="quick-num">03</span>
+            <b>Порядок обработки<br>обращений</b><small>Каналы, состав и проверка</small><span class="card-arrow">↗</span>
+          </button>
+          <button class="quick-card" data-go="data">
+            <span class="quick-icon icon-dark">▦</span><span class="quick-num">04</span>
+            <b>Состав данных<br>по получателям</b><small>Свериться с таблицей</small><span class="card-arrow">↗</span>
+          </button>
+        </div>
+
+        <div class="overview-bottom">
+          <div class="recent-panel">
+            <div class="section-heading compact"><div><div class="eyebrow small">БИБЛИОТЕКА</div><h2>Недавно добавлено</h2></div><span class="count-pill">06 кейсов</span></div>
+            <div class="recent-list" id="recent-list"></div>
+          </div>
+          <aside class="review-card"><div class="review-top"><span class="review-icon">!</span><span class="review-label">ПЕРЕД ОТПРАВКОЙ</span></div><h3>Проверьте факты<br>по обращению</h3><p>Шаблон помогает подготовить текст, но не заменяет проверку адресата, полномочий и сведений в системах Бюро.</p><button class="review-link" data-go="scenarios">Открыть сценарии <span>→</span></button><div class="review-decoration"></div></aside>
+        </div>
+        <footer class="page-footer">Материалы для внутренней работы · перед применением сверяйтесь с актуальной редакцией базы знаний</footer>
+      </section>
+
+      <section class="view" id="view-scenarios">
+        <div class="page-intro"><div class="eyebrow"><span class="eyebrow-line"></span>БИБЛИОТЕКА ОТВЕТОВ</div><h1>Типовые обращения</h1><p class="lead">Выберите ближайший сценарий. Исходные запросы и ответы открываются отдельно.</p></div>
+        <div class="filter-row"><div class="search-wrap compact-search"><span class="search-icon">⌕</span><input id="scenario-search" type="search" placeholder="Поиск по обращениям" aria-label="Поиск по сценариям"></div><div class="filter-chips"><button class="filter-chip selected" data-filter="all">Все <span>06</span></button><button class="filter-chip" data-filter="Субъект">Субъекты</button><button class="filter-chip" data-filter="Госорган">Госорганы</button></div></div>
+        <div class="scenario-grid" id="scenario-grid"></div>
+        <div class="soft-note"><span>i</span><p>Если формулировка обращения не совпадает со сценарием, не подставляйте ближайший шаблон автоматически. Уточните обстоятельства или передайте вопрос юристу.</p></div>
+      </section>
+
+      <section class="view" id="view-process">
+        <div class="page-intro"><div class="eyebrow"><span class="eyebrow-line"></span>РАБОЧИЙ ПОРЯДОК</div><h1>Обработка обращений</h1><p class="lead">Сверьтесь с видом обращения, каналом поступления и необходимыми сведениями до подготовки ответа.</p></div>
+        <div class="process-banner"><div class="process-banner-symbol">01</div><div><span class="mini-label">СНАЧАЛА ОПРЕДЕЛИТЕ ТИП</span><h2>Обращение, запрос отчёта<br>или оспаривание истории?</h2><p>В базе это разные процессы. У каждого свой состав сведений и порядок рассмотрения.</p></div><div class="banner-lines"></div></div>
+        <div class="process-cards">
+          <article class="process-card"><div class="process-card-head"><span class="process-number">01</span><span class="tag tag-yellow">ОБРАЩЕНИЕ</span></div><h3>Обращение в Бюро</h3><p>Запрос, связанный с деятельностью Бюро по Федеральному закону № 218-ФЗ.</p><div class="divider"></div><b class="list-title">Проверьте наличие</b><ul><li>Фамилии или наименования заявителя</li><li>Адреса для направления ответа</li><li>Понятного описания сути обращения</li></ul><div class="channel-box"><b>Каналы из порядка</b><span>Электронная почта · курьер · лично · Почта России · ЭДО</span><span class="channel-excluded">Телефонные обращения не принимаются</span></div></article>
+          <article class="process-card"><div class="process-card-head"><span class="process-number">02</span><span class="tag">КРЕДИТНЫЙ ОТЧЁТ</span></div><h3>Запрос кредитного отчёта</h3><p>Оформленный запрос субъекта или его представителя с данными для идентификации.</p><div class="divider"></div><b class="list-title">В порядке указаны</b><ul><li>ФИО и паспортные данные субъекта</li><li>Подпись субъекта или представителя</li><li>Проверка полномочий представителя</li></ul><div class="channel-box"><b>Каналы из порядка</b><span>Электронная почта · лично · Почта России · телеграмма</span><span class="channel-excluded">При несоблюдении требований отчёт не выдаётся</span></div></article>
+          <article class="process-card"><div class="process-card-head"><span class="process-number">03</span><span class="tag">ОСПАРИВАНИЕ</span></div><h3>Оспаривание сведений</h3><p>Запрос субъекта об исправлении сведений, содержащихся в кредитной истории.</p><div class="divider"></div><b class="list-title">В порядке указаны</b><ul><li>ФИО и данные для поиска истории</li><li>Какие именно сведения нужно исправить</li><li>Подпись — с учётом канала поступления</li></ul><div class="channel-box"><b>Маршрут по базе</b><span>Запрос направляется источнику формирования кредитной истории</span><span class="channel-excluded">БКИ не проверяет оспариваемые сведения самостоятельно</span></div></article>
+        </div>
+        <div class="warning-box"><span class="warning-icon">!</span><div><b>Есть пункты на юридическое утверждение</b><p>В исходном порядке отмечены вопросы о нерегистрируемых обращениях и запросе уточнений при оспаривании. Этот прототип показывает их как вопросы для проверки и не формирует по ним автоматический вывод.</p></div></div>
+        <div class="section-heading subhead"><div><div class="eyebrow small">ПОСЛЕДОВАТЕЛЬНОСТЬ</div><h2>Рабочие шаги</h2></div></div>
+        <div class="steps-row"><div class="step"><span>1</span><b>Определите вид</b><small>Обращение, запрос отчёта или оспаривание</small></div><i>→</i><div class="step"><span>2</span><b>Сверьте требования</b><small>Канал, состав сведений, подписант</small></div><i>→</i><div class="step"><span>3</span><b>Подготовьте ответ</b><small>Используйте подходящий шаблон из базы</small></div></div>
+      </section>
+
+      <section class="view" id="view-data">
+        <div class="page-intro"><div class="eyebrow"><span class="eyebrow-line"></span>ТАБЛИЦА ПОЛНОМОЧИЙ</div><h1>Кому какие<br><span>данные</span></h1><p class="lead">Сводка по получателям сведений из переданной базы. Проверяйте основание и условия конкретного запроса.</p></div>
+        <div class="data-toolbar"><div class="search-wrap compact-search"><span class="search-icon">⌕</span><input id="data-search" type="search" placeholder="Найти получателя" aria-label="Поиск получателя"></div><span class="table-caption">СВОДКА ИЗ РАБОЧЕЙ ТАБЛИЦЫ · ЧЕРНОВИК</span></div>
+        <div class="data-table-wrap"><table class="data-table"><thead><tr><th>Получатель</th><th>Какие сведения</th><th>Основание в таблице</th><th>Условие / примечание</th></tr></thead><tbody id="data-rows"></tbody></table></div>
+        <div class="warning-box table-warning"><span class="warning-icon">!</span><div><b>Таблица помогает найти нужный раздел</b><p>Она не подтверждает право на конкретную выдачу. Сверьте редакцию закона, цель запроса, полномочия и ограничения в первичных документах.</p></div></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <section class="answer-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Закрыть">×</button>
+      <div class="modal-eyebrow"><span class="status-dot"></span><span id="modal-audience">СЦЕНАРИЙ</span><span class="modal-id" id="modal-id"></span></div>
+      <h2 id="modal-title"></h2>
+      <div class="modal-query"><span class="mini-label">СИТУАЦИЯ ИЗ БАЗЫ</span><p id="modal-query-text"></p></div>
+      <div class="answer-label"><span class="mini-label">ОТВЕТ ИЗ БАЗЫ</span><span class="draft-tag">ПРОВЕРЬТЕ ФАКТЫ ПЕРЕД ОТПРАВКОЙ</span></div>
+      <div class="answer-copy" id="modal-answer"></div>
+      <div class="modal-actions"><button class="copy-button" id="copy-answer"><span>▢</span>Копировать ответ</button><span class="copy-hint" id="copy-hint">Скопируйте, затем проверьте подстановки</span></div>
+      <p class="modal-footnote">Не вставляйте в ассистент паспортные данные, номера договоров и другие сведения клиентов. Прототип работает только с материалами базы.</p>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
