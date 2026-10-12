@@ -4,6 +4,6 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "start": "npm run build && node dev.mjs"
+    "start": "node dev.mjs"
   }
 }

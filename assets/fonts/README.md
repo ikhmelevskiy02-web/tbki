@@ -1,2 +1,1 @@
-Place the licensed, web-ready T-Sans / Tinkoff Sans WOFF2 font here before connecting it in `styles.css`.
-Do not commit font files unless the license permits use and redistribution in this project.
+T-Sans regular, medium and bold are loaded from the official corporate CDN used by tbki.ru. URLs are configured in styles.css. Font binaries are not redistributed in this repository.

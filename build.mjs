@@ -1,10 +1,5 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-
-const assetNames = ["index.html", "styles.css", "app.js"];
-const assets = Object.fromEntries(await Promise.all(assetNames.map(async name => [name, await readFile(new URL(`./${name}`, import.meta.url), "utf8")])));
-const template = await readFile(new URL("./worker-template.mjs", import.meta.url), "utf8");
-const output = template.replace("__ASSET_MAP__", JSON.stringify(assets));
-if (output === template) throw new Error("Asset map placeholder was not found.");
-await mkdir(new URL("./dist/server/", import.meta.url), { recursive: true });
-await writeFile(new URL("./dist/server/index.js", import.meta.url), output, "utf8");
-console.log(`Built Worker with ${assetNames.length} embedded assets.`);
+import {mkdir,copyFile,cp} from 'node:fs/promises';
+await mkdir('dist',{recursive:true});
+for(const file of ['index.html','styles.css','app.js']) await copyFile(file,`dist/${file}`);
+await cp('assets','dist/assets',{recursive:true,filter:p=>!p.endsWith('.woff2')});
+console.log('Static knowledge workspace built in dist/');

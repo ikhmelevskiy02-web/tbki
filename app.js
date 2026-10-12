@@ -61,6 +61,7 @@ const dataRows = [
 const $ = (s, root=document) => root.querySelector(s);
 const $$ = (s, root=document) => [...root.querySelectorAll(s)];
 let currentFilter = "all";
+let modalOpener = null;
 
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function renderCases(list=cases, mount="#scenario-grid"){
@@ -77,15 +78,18 @@ function renderData(query=""){
 }
 function openCase(id){
   const c=cases.find(item=>item.id===id);if(!c)return;
+  modalOpener=document.activeElement;
   $("#modal-title").textContent=c.title;$("#modal-audience").textContent=c.audience.toUpperCase();$("#modal-id").textContent=`КЕЙС ${c.number}`;$("#modal-query-text").textContent=c.query;$("#modal-answer").textContent=c.answer;$("#copy-hint").textContent="Скопируйте, затем проверьте подстановки";
   $("#modal-backdrop").hidden=false;document.body.classList.add("modal-open");$("#modal-close").focus();
 }
-function closeCase(){$("#modal-backdrop").hidden=true;document.body.classList.remove("modal-open");}
+function closeCase(){$("#modal-backdrop").hidden=true;document.body.classList.remove("modal-open");modalOpener?.focus();}
 function showView(name){
   $$(".view").forEach(view=>view.classList.toggle("active",view.id===`view-${name}`));
   $$(".nav-item").forEach(button=>button.classList.toggle("active",button.dataset.view===name));
-  const labels={overview:"Рабочее пространство",scenarios:"Типовые обращения",process:"Обработка обращений",data:"Кому какие данные"};
+  $$(".nav-item").forEach(button=>{if(button.dataset.view===name)button.setAttribute("aria-current","page");else button.removeAttribute("aria-current");});
+  const labels={overview:"Рабочее пространство",scenarios:"Типовые обращения",process:"Обработка обращений",data:"Кому какие данные",court:"Судебная работа"};
   $("#crumb-current").textContent=labels[name]||labels.overview;
+  history.replaceState(null,"",`#${name}`);
   window.scrollTo({top:0,behavior:"smooth"});
 }
 function searchCases(query){
@@ -100,33 +104,6 @@ $$('[data-view]').forEach(button=>button.addEventListener("click",()=>showView(b
 $$('[data-go]').forEach(button=>button.addEventListener("click",()=>showView(button.dataset.go)));
 document.addEventListener("click",event=>{const button=event.target.closest("[data-open]");if(button)openCase(button.dataset.open);});
 $("#global-search").addEventListener("keydown",event=>{if(event.key==="Enter"){showView("scenarios");$("#scenario-search").value=event.currentTarget.value;searchCases(event.currentTarget.value);$("#scenario-search").focus();}});
-const aiQuestion=$("#ai-question");
-const aiGenerate=$("#ai-generate");
-const aiResult=$("#ai-result");
-const aiStatus=$("#ai-status");
-const aiResultText=$("#ai-result-text");
-const aiCopy=$("#ai-copy");
-function relevantCases(question){
-  const stop=new Set(["это","как","что","для","или","мне","нам","прошу","можно","нужно","есть","при","его","её","они","она","ему","этот","этой","сведения","субъект","ответ","запрос"]);
-  const terms=[...new Set((question.toLocaleLowerCase("ru").match(/[а-яёa-z0-9-]{3,}/g)||[]).filter(word=>!stop.has(word)))];
-  return cases.map(item=>{
-    const haystack=`${item.title} ${item.short} ${item.query} ${item.keywords} ${item.answer}`.toLocaleLowerCase("ru");
-    return {item,score:terms.reduce((sum,word)=>sum+(haystack.includes(word)?1:0),0)};
-  }).filter(row=>row.score>0).sort((a,b)=>b.score-a.score).slice(0,3).map(({item})=>({title:item.title,query:item.query,answer:item.answer}));
-}
-aiGenerate.addEventListener("click",async()=>{
-  const question=aiQuestion.value.trim();
-  if(question.length<8){aiResult.hidden=false;aiStatus.textContent="Добавьте описание ситуации";aiResultText.textContent="Опишите вопрос чуть подробнее, чтобы подготовить черновик.";aiCopy.hidden=true;aiQuestion.focus();return;}
-  aiGenerate.disabled=true;aiGenerate.innerHTML="<span>…</span> Готовлю черновик";aiResult.hidden=false;aiStatus.textContent="Подбираю подходящие материалы…";aiResultText.textContent="";aiCopy.hidden=true;
-  try{
-    const response=await fetch("/api/assistant",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question,context:relevantCases(question)})});
-    const payload=await response.json().catch(()=>({}));
-    if(!response.ok)throw new Error(payload.error||"Не удалось получить ответ. Попробуйте ещё раз.");
-    aiStatus.textContent="Черновик ответа · проверьте факты перед использованием";aiResultText.textContent=payload.answer||"Сервис не вернул текст ответа.";aiCopy.hidden=!payload.answer;
-  }catch(error){aiStatus.textContent="Не удалось сформировать ответ";aiResultText.textContent=error.message||"Проверьте подключение и повторите попытку.";}
-  finally{aiGenerate.disabled=false;aiGenerate.innerHTML="<span>✦</span> Сформировать черновик";}
-});
-aiCopy.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(aiResultText.textContent);aiCopy.textContent="Скопировано";}catch{aiStatus.textContent="Выделите черновик и скопируйте вручную";}});
 $("#scenario-search").addEventListener("input",event=>searchCases(event.target.value));
 $$('.filter-chip').forEach(button=>button.addEventListener("click",()=>{$$('.filter-chip').forEach(chip=>chip.classList.remove("selected"));button.classList.add("selected");currentFilter=button.dataset.filter==="all"?"all":button.dataset.filter;searchCases($("#scenario-search").value);}));
 $("#data-search").addEventListener("input",event=>renderData(event.target.value));
@@ -134,3 +111,18 @@ $("#modal-close").addEventListener("click",closeCase);
 $("#modal-backdrop").addEventListener("click",event=>{if(event.target.id==="modal-backdrop")closeCase();});
 document.addEventListener("keydown",event=>{if(event.key==="Escape"&&!$("#modal-backdrop").hidden)closeCase();});
 $("#copy-answer").addEventListener("click",async()=>{try{await navigator.clipboard.writeText($("#modal-answer").textContent);$("#copy-hint").textContent="Ответ скопирован";}catch{const range=document.createRange();range.selectNodeContents($("#modal-answer"));const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);$("#copy-hint").textContent="Выделите текст и скопируйте вручную";}});
+
+function runSearch(){showView("scenarios");$("#scenario-search").value=$("#global-search").value;searchCases($("#global-search").value);$("#scenario-search").focus();}
+$("#search-submit").addEventListener("click",runSearch);
+$(".brand").addEventListener("click",()=>showView("overview"));
+$$('[data-step]').forEach(button=>button.addEventListener("click",()=>{const step=document.getElementById(`court-step-${button.dataset.step}`);step.open=true;step.scrollIntoView({behavior:"smooth",block:"start"});}));
+function route(){const view=location.hash.slice(1);if(["overview","scenarios","process","data","court"].includes(view))showView(view);}
+window.addEventListener("hashchange",route);route();
+
+document.addEventListener("keydown",event=>{
+  if(event.key!=="Tab"||$("#modal-backdrop").hidden)return;
+  const controls=$$('button,a[href],input,[tabindex="0"]',$("#modal-backdrop"));
+  const first=controls[0],last=controls.at(-1);
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+});

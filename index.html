@@ -1,141 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111111">
-  <meta name="description" content="Внутренний ассистент поддержки Т-БКИ: поиск по типовым обращениям, процедурам и правилам предоставления сведений.">
-  <title>Ассистент поддержки — Т-БКИ</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#111111" name="theme-color"/>
+<meta content="База знаний поддержки Т-БКИ: типовые ответы, обработка обращений и судебная работа." name="description"/>
+<title>База знаний поддержки — Т-БКИ</title>
+<link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" aria-label="Основная навигация">
-      <a class="brand" href="#overview" aria-label="Т-БКИ — главная">
-        <span class="brand-mark">Т</span><span class="brand-name">Т-БКИ</span>
-        <span class="brand-caption">БЮРО КРЕДИТНЫХ ИСТОРИЙ</span>
-      </a>
+<div class="app-shell">
+<aside aria-label="Основная навигация" class="sidebar">
+<a aria-label="Т-БКИ — главная" class="brand" href="#overview"><img alt="Т-БКИ" height="58" src="assets/tbki-logo.svg" width="156"/></a>
+<div class="nav-label">БАЗА ЗНАНИЙ</div>
+<nav class="nav-list">
+<button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span>Главная</button>
+<button class="nav-item" data-view="scenarios"><span class="nav-icon">▤</span>Типовые обращения</button>
+<button class="nav-item" data-view="process"><span class="nav-icon">↗</span>Обработка обращений</button>
+<button class="nav-item" data-view="data"><span class="nav-icon">▦</span>Кому какие данные</button>
+<button class="nav-item" data-view="court"><span class="nav-icon">▱</span>Судебная работа</button></nav>
+<div class="sidebar-bottom">
+<div class="secure-note"><div><b>Рабочие материалы</b><small>Шаблоны и инструкции</small></div></div>
+<div class="sidebar-version">Поддержка Т-БКИ</div>
+</div>
+</aside>
+<main class="main-area">
+<header class="topbar">
+<div class="breadcrumbs"><span>Т-БКИ</span><span class="crumb-sep">/</span><span id="crumb-current">Рабочее пространство</span></div>
+<div class="topbar-right"><span class="source-status">Поддержка · Т-БКИ</span></div>
+</header>
+<section class="view active" id="view-overview">
+<div class="welcome-row">
+<div>
+<div class="eyebrow">РАБОЧИЕ МАТЕРИАЛЫ Т-БКИ</div>
+<h1>Все нужное
+для работы поддержки</h1>
+<p class="lead">Готовые ответы, порядок действий и судебные документы — в одном месте.</p>
+</div>
 
-      <div class="nav-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
-      <nav class="nav-list">
-        <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span>Главная</button>
-        <button class="nav-item" data-view="scenarios"><span class="nav-icon">▤</span>Типовые обращения<span class="nav-count">06</span></button>
-        <button class="nav-item" data-view="process"><span class="nav-icon">↗</span>Обработка обращений</button>
-        <button class="nav-item" data-view="data"><span class="nav-icon">▦</span>Кому какие данные</button>
-      </nav>
+</div>
+<div class="search-wrap">
+<span aria-hidden="true" class="search-icon">⌕</span>
+<input aria-label="Поиск по базе знаний" autocomplete="off" id="global-search" placeholder="Найти типовой ответ: согласие, отчёт, представитель…" type="search"/>
+<button class="search-submit" id="search-submit" type="button">Найти <span aria-hidden="true">→</span></button>
+<div class="search-hint">Поиск по библиотеке типовых обращений</div>
+</div>
 
-      <div class="sidebar-bottom">
-        <div class="secure-note"><span class="secure-dot"></span><div><b>Внутренний инструмент</b><small>Не содержит данных клиентов</small></div></div>
-        <div class="sidebar-version">Версия прототипа <span>0.1</span></div>
-      </div>
-    </aside>
-
-    <main class="main-area">
-      <header class="topbar">
-        <div class="breadcrumbs"><span>Т-БКИ</span><span class="crumb-sep">/</span><span id="crumb-current">Рабочее пространство</span></div>
-        <div class="topbar-right"><span class="source-status"><i></i> База знаний · черновик</span><span class="avatar">П</span></div>
-      </header>
-
-      <section class="view active" id="view-overview">
-        <div class="welcome-row">
-          <div>
-            <div class="eyebrow"><span class="eyebrow-line"></span>ПОДДЕРЖКА · Т-БКИ</div>
-            <h1>Чем помочь<br><span>сегодня?</span></h1>
-            <p class="lead">Найдите подходящий сценарий и подготовьте ответ<br class="desktop-only"> по материалам базы знаний.</p>
-          </div>
-          <div class="hero-stamp" aria-hidden="true"><span class="stamp-t">Т</span><span class="stamp-orbit"></span><span class="stamp-dot"></span></div>
-        </div>
-
-        <div class="search-wrap">
-          <span class="search-icon" aria-hidden="true">⌕</span>
-          <input id="global-search" type="search" placeholder="Опишите вопрос или введите ключевые слова" autocomplete="off" aria-label="Поиск по базе знаний">
-          <kbd>↵</kbd>
-          <div class="search-hint">Например: «отзыв согласия», «запрос от представителя», «кредитный отчёт»</div>
-        </div>
-
-        <section class="ai-panel" aria-labelledby="ai-title">
-          <div class="ai-panel-top"><div><div class="eyebrow small">ИИ-ПОМОЩНИК</div><h2 id="ai-title">Подготовить черновик ответа</h2></div><span class="ai-badge"><span></span> ТЕСТОВЫЙ РЕЖИМ</span></div>
-          <label class="ai-question-label" for="ai-question">Опишите ситуацию без данных клиента</label>
-          <textarea id="ai-question" rows="3" maxlength="1800" placeholder="Например: субъект просит удалить сведения о договоре, который ему не принадлежит"></textarea>
-          <div class="ai-panel-foot"><p>Публичная версия на GitHub Pages работает как демо поиска и базы шаблонов. Генерация нейросетью здесь пока не подключена. Не вводите ФИО, паспортные данные, контакты и сведения из кредитной истории.</p><button id="ai-generate" type="button" disabled aria-disabled="true"><span>✦</span> ИИ не подключён</button></div>
-          <div class="ai-result" id="ai-result" hidden aria-live="polite">
-            <div class="ai-result-head"><span id="ai-status">Черновик ответа</span><button id="ai-copy" type="button" hidden>Скопировать</button></div>
-            <div class="ai-result-text" id="ai-result-text"></div>
-          </div>
-        </section>
-
-        <div class="section-heading"><div><div class="eyebrow small">БЫСТРЫЙ ДОСТУП</div><h2>Популярные разделы</h2></div><button class="text-link" data-go="scenarios">Все сценарии <span>→</span></button></div>
-
-        <div class="quick-grid">
-          <button class="quick-card quick-yellow" data-open="advertising">
-            <span class="quick-icon icon-sun">↗</span><span class="quick-num">01</span>
-            <b>Отзыв согласия<br>на рекламу</b><small>Типовой ответ субъекту</small><span class="card-arrow">↗</span>
-          </button>
-          <button class="quick-card" data-open="third-party">
-            <span class="quick-icon icon-dark">↔</span><span class="quick-num">02</span>
-            <b>Передача данных<br>третьим лицам</b><small>Разграничить основание запроса</small><span class="card-arrow">↗</span>
-          </button>
-          <button class="quick-card" data-go="process">
-            <span class="quick-icon icon-dark">≡</span><span class="quick-num">03</span>
-            <b>Порядок обработки<br>обращений</b><small>Каналы, состав и проверка</small><span class="card-arrow">↗</span>
-          </button>
-          <button class="quick-card" data-go="data">
-            <span class="quick-icon icon-dark">▦</span><span class="quick-num">04</span>
-            <b>Состав данных<br>по получателям</b><small>Свериться с таблицей</small><span class="card-arrow">↗</span>
-          </button>
-        </div>
-
-        <div class="overview-bottom">
-          <div class="recent-panel">
-            <div class="section-heading compact"><div><div class="eyebrow small">БИБЛИОТЕКА</div><h2>Недавно добавлено</h2></div><span class="count-pill">06 кейсов</span></div>
-            <div class="recent-list" id="recent-list"></div>
-          </div>
-          <aside class="review-card"><div class="review-top"><span class="review-icon">!</span><span class="review-label">ПЕРЕД ОТПРАВКОЙ</span></div><h3>Проверьте факты<br>по обращению</h3><p>Шаблон помогает подготовить текст, но не заменяет проверку адресата, полномочий и сведений в системах Бюро.</p><button class="review-link" data-go="scenarios">Открыть сценарии <span>→</span></button><div class="review-decoration"></div></aside>
-        </div>
-        <footer class="page-footer">Материалы для внутренней работы · перед применением сверяйтесь с актуальной редакцией базы знаний</footer>
-      </section>
-
-      <section class="view" id="view-scenarios">
-        <div class="page-intro"><div class="eyebrow"><span class="eyebrow-line"></span>БИБЛИОТЕКА ОТВЕТОВ</div><h1>Типовые обращения</h1><p class="lead">Выберите ближайший сценарий. Исходные запросы и ответы открываются отдельно.</p></div>
-        <div class="filter-row"><div class="search-wrap compact-search"><span class="search-icon">⌕</span><input id="scenario-search" type="search" placeholder="Поиск по обращениям" aria-label="Поиск по сценариям"></div><div class="filter-chips"><button class="filter-chip selected" data-filter="all">Все <span>06</span></button><button class="filter-chip" data-filter="Субъект">Субъекты</button><button class="filter-chip" data-filter="Госорган">Госорганы</button></div></div>
-        <div class="scenario-grid" id="scenario-grid"></div>
-        <div class="soft-note"><span>i</span><p>Если формулировка обращения не совпадает со сценарием, не подставляйте ближайший шаблон автоматически. Уточните обстоятельства или передайте вопрос юристу.</p></div>
-      </section>
-
-      <section class="view" id="view-process">
-        <div class="page-intro"><div class="eyebrow"><span class="eyebrow-line"></span>РАБОЧИЙ ПОРЯДОК</div><h1>Обработка обращений</h1><p class="lead">Сверьтесь с видом обращения, каналом поступления и необходимыми сведениями до подготовки ответа.</p></div>
-        <div class="process-banner"><div class="process-banner-symbol">01</div><div><span class="mini-label">СНАЧАЛА ОПРЕДЕЛИТЕ ТИП</span><h2>Обращение, запрос отчёта<br>или оспаривание истории?</h2><p>В базе это разные процессы. У каждого свой состав сведений и порядок рассмотрения.</p></div><div class="banner-lines"></div></div>
-        <div class="process-cards">
-          <article class="process-card"><div class="process-card-head"><span class="process-number">01</span><span class="tag tag-yellow">ОБРАЩЕНИЕ</span></div><h3>Обращение в Бюро</h3><p>Запрос, связанный с деятельностью Бюро по Федеральному закону № 218-ФЗ.</p><div class="divider"></div><b class="list-title">Проверьте наличие</b><ul><li>Фамилии или наименования заявителя</li><li>Адреса для направления ответа</li><li>Понятного описания сути обращения</li></ul><div class="channel-box"><b>Каналы из порядка</b><span>Электронная почта · курьер · лично · Почта России · ЭДО</span><span class="channel-excluded">Телефонные обращения не принимаются</span></div></article>
-          <article class="process-card"><div class="process-card-head"><span class="process-number">02</span><span class="tag">КРЕДИТНЫЙ ОТЧЁТ</span></div><h3>Запрос кредитного отчёта</h3><p>Оформленный запрос субъекта или его представителя с данными для идентификации.</p><div class="divider"></div><b class="list-title">В порядке указаны</b><ul><li>ФИО и паспортные данные субъекта</li><li>Подпись субъекта или представителя</li><li>Проверка полномочий представителя</li></ul><div class="channel-box"><b>Каналы из порядка</b><span>Электронная почта · лично · Почта России · телеграмма</span><span class="channel-excluded">При несоблюдении требований отчёт не выдаётся</span></div></article>
-          <article class="process-card"><div class="process-card-head"><span class="process-number">03</span><span class="tag">ОСПАРИВАНИЕ</span></div><h3>Оспаривание сведений</h3><p>Запрос субъекта об исправлении сведений, содержащихся в кредитной истории.</p><div class="divider"></div><b class="list-title">В порядке указаны</b><ul><li>ФИО и данные для поиска истории</li><li>Какие именно сведения нужно исправить</li><li>Подпись — с учётом канала поступления</li></ul><div class="channel-box"><b>Маршрут по базе</b><span>Запрос направляется источнику формирования кредитной истории</span><span class="channel-excluded">БКИ не проверяет оспариваемые сведения самостоятельно</span></div></article>
-        </div>
-        <div class="warning-box"><span class="warning-icon">!</span><div><b>Есть пункты на юридическое утверждение</b><p>В исходном порядке отмечены вопросы о нерегистрируемых обращениях и запросе уточнений при оспаривании. Этот прототип показывает их как вопросы для проверки и не формирует по ним автоматический вывод.</p></div></div>
-        <div class="section-heading subhead"><div><div class="eyebrow small">ПОСЛЕДОВАТЕЛЬНОСТЬ</div><h2>Рабочие шаги</h2></div></div>
-        <div class="steps-row"><div class="step"><span>1</span><b>Определите вид</b><small>Обращение, запрос отчёта или оспаривание</small></div><i>→</i><div class="step"><span>2</span><b>Сверьте требования</b><small>Канал, состав сведений, подписант</small></div><i>→</i><div class="step"><span>3</span><b>Подготовьте ответ</b><small>Используйте подходящий шаблон из базы</small></div></div>
-      </section>
-
-      <section class="view" id="view-data">
-        <div class="page-intro"><div class="eyebrow"><span class="eyebrow-line"></span>ТАБЛИЦА ПОЛНОМОЧИЙ</div><h1>Кому какие<br><span>данные</span></h1><p class="lead">Сводка по получателям сведений из переданной базы. Проверяйте основание и условия конкретного запроса.</p></div>
-        <div class="data-toolbar"><div class="search-wrap compact-search"><span class="search-icon">⌕</span><input id="data-search" type="search" placeholder="Найти получателя" aria-label="Поиск получателя"></div><span class="table-caption">СВОДКА ИЗ РАБОЧЕЙ ТАБЛИЦЫ · ЧЕРНОВИК</span></div>
-        <div class="data-table-wrap"><table class="data-table"><thead><tr><th>Получатель</th><th>Какие сведения</th><th>Основание в таблице</th><th>Условие / примечание</th></tr></thead><tbody id="data-rows"></tbody></table></div>
-        <div class="warning-box table-warning"><span class="warning-icon">!</span><div><b>Таблица помогает найти нужный раздел</b><p>Она не подтверждает право на конкретную выдачу. Сверьте редакцию закона, цель запроса, полномочия и ограничения в первичных документах.</p></div></div>
-      </section>
-    </main>
-  </div>
-
-  <div class="modal-backdrop" id="modal-backdrop" hidden>
-    <section class="answer-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button class="modal-close" id="modal-close" aria-label="Закрыть">×</button>
-      <div class="modal-eyebrow"><span class="status-dot"></span><span id="modal-audience">СЦЕНАРИЙ</span><span class="modal-id" id="modal-id"></span></div>
-      <h2 id="modal-title"></h2>
-      <div class="modal-query"><span class="mini-label">СИТУАЦИЯ ИЗ БАЗЫ</span><p id="modal-query-text"></p></div>
-      <div class="answer-label"><span class="mini-label">ОТВЕТ ИЗ БАЗЫ</span><span class="draft-tag">ПРОВЕРЬТЕ ФАКТЫ ПЕРЕД ОТПРАВКОЙ</span></div>
-      <div class="answer-copy" id="modal-answer"></div>
-      <div class="modal-actions"><button class="copy-button" id="copy-answer"><span>▢</span>Копировать ответ</button><span class="copy-hint" id="copy-hint">Скопируйте, затем проверьте подстановки</span></div>
-      <p class="modal-footnote">Не вставляйте в ассистент паспортные данные, номера договоров и другие сведения клиентов. Прототип работает только с материалами базы.</p>
-    </section>
-  </div>
-  <script src="app.js"></script>
+<div class="section-heading"><div><h2>Что нужно сделать?</h2><p class="section-subtitle">Выберите задачу, чтобы перейти к материалам.</p></div></div>
+<div class="quick-grid"><button class="quick-card" data-go="scenarios"><span class="quick-num">01</span><b>Подготовить ответ</b><small>Сценарии обращений и готовые формулировки</small><span aria-hidden="true" class="card-arrow">→</span></button><button class="quick-card" data-go="process"><span class="quick-num">02</span><b>Обработать обращение</b><small>Каналы, требования и порядок проверки</small><span aria-hidden="true" class="card-arrow">→</span></button><button class="quick-card quick-yellow" data-go="court"><span class="quick-num">03</span><b>Судебная работа</b><small>От входящего документа до подачи ответа</small><span aria-hidden="true" class="card-arrow">→</span></button><button class="quick-card" data-go="data"><span class="quick-num">04</span><b>Проверить состав данных</b><small>Получатели, основания и условия выдачи</small><span aria-hidden="true" class="card-arrow">→</span></button></div>
+<div class="overview-bottom">
+<div class="recent-panel">
+<div class="section-heading compact"><div><div class="eyebrow small">БИБЛИОТЕКА</div><h2>Типовые ответы</h2></div><span class="count-pill">06 кейсов</span></div>
+<div class="recent-list" id="recent-list"></div>
+</div>
+<aside class="review-card"><span class="review-label">НОВАЯ ИНСТРУКЦИЯ · 12.10.2026</span><h3>Получен документ
+из суда?</h3><p>Начните с регистрации и проверки срока. Затем уточните роль Т-БКИ и дальнейшее действие.</p><button class="review-link" data-go="court">Открыть процесс <span>→</span></button></aside>
+</div>
+<footer class="page-footer">Материалы для внутренней работы · перед применением сверяйтесь с актуальной редакцией базы знаний</footer>
+</section>
+<section class="view" id="view-scenarios">
+<div class="page-intro"><div class="eyebrow"><span class="eyebrow-line"></span>БИБЛИОТЕКА ОТВЕТОВ</div><h1>Типовые обращения</h1><p class="lead">Выберите ближайший сценарий. Исходные запросы и ответы открываются отдельно.</p></div>
+<div class="filter-row"><div class="search-wrap compact-search"><span class="search-icon">⌕</span><input aria-label="Поиск по сценариям" id="scenario-search" placeholder="Поиск по обращениям" type="search"/></div><div class="filter-chips"><button class="filter-chip selected" data-filter="all">Все <span>06</span></button><button class="filter-chip" data-filter="Субъект">Субъекты</button><button class="filter-chip" data-filter="Госорган">Госорганы</button></div></div>
+<div class="scenario-grid" id="scenario-grid"></div>
+<div class="soft-note"><span>i</span><p>Если формулировка обращения не совпадает со сценарием, не подставляйте ближайший шаблон автоматически. Уточните обстоятельства или передайте вопрос юристу.</p></div>
+</section>
+<section class="view" id="view-process">
+<div class="page-intro"><div class="eyebrow"><span class="eyebrow-line"></span>РАБОЧИЙ ПОРЯДОК</div><h1>Обработка обращений</h1><p class="lead">Сверьтесь с видом обращения, каналом поступления и необходимыми сведениями до подготовки ответа.</p></div>
+<div class="process-banner"><div class="process-banner-symbol">01</div><div><span class="mini-label">СНАЧАЛА ОПРЕДЕЛИТЕ ТИП</span><h2>Обращение, запрос отчёта<br/>или оспаривание истории?</h2><p>В базе это разные процессы. У каждого свой состав сведений и порядок рассмотрения.</p></div><div class="banner-lines"></div></div>
+<div class="process-cards">
+<article class="process-card"><div class="process-card-head"><span class="process-number">01</span><span class="tag tag-yellow">ОБРАЩЕНИЕ</span></div><h3>Обращение в Бюро</h3><p>Запрос, связанный с деятельностью Бюро по Федеральному закону № 218-ФЗ.</p><div class="divider"></div><b class="list-title">Проверьте наличие</b><ul><li>Фамилии или наименования заявителя</li><li>Адреса для направления ответа</li><li>Понятного описания сути обращения</li></ul><div class="channel-box"><b>Каналы из порядка</b><span>Электронная почта · курьер · лично · Почта России · ЭДО</span><span class="channel-excluded">Телефонные обращения не принимаются</span></div></article>
+<article class="process-card"><div class="process-card-head"><span class="process-number">02</span><span class="tag">КРЕДИТНЫЙ ОТЧЁТ</span></div><h3>Запрос кредитного отчёта</h3><p>Оформленный запрос субъекта или его представителя с данными для идентификации.</p><div class="divider"></div><b class="list-title">В порядке указаны</b><ul><li>ФИО и паспортные данные субъекта</li><li>Подпись субъекта или представителя</li><li>Проверка полномочий представителя</li></ul><div class="channel-box"><b>Каналы из порядка</b><span>Электронная почта · лично · Почта России · телеграмма</span><span class="channel-excluded">При несоблюдении требований отчёт не выдаётся</span></div></article>
+<article class="process-card"><div class="process-card-head"><span class="process-number">03</span><span class="tag">ОСПАРИВАНИЕ</span></div><h3>Оспаривание сведений</h3><p>Запрос субъекта об исправлении сведений, содержащихся в кредитной истории.</p><div class="divider"></div><b class="list-title">В порядке указаны</b><ul><li>ФИО и данные для поиска истории</li><li>Какие именно сведения нужно исправить</li><li>Подпись — с учётом канала поступления</li></ul><div class="channel-box"><b>Маршрут по базе</b><span>Запрос направляется источнику формирования кредитной истории</span><span class="channel-excluded">БКИ не проверяет оспариваемые сведения самостоятельно</span></div></article>
+</div>
+<div class="warning-box"><span class="warning-icon">!</span><div><b>Есть пункты на юридическое утверждение</b><p>В исходном порядке отмечены вопросы о нерегистрируемых обращениях и запросе уточнений при оспаривании. Этот прототип показывает их как вопросы для проверки и не формирует по ним автоматический вывод.</p></div></div>
+<div class="section-heading subhead"><div><div class="eyebrow small">ПОСЛЕДОВАТЕЛЬНОСТЬ</div><h2>Рабочие шаги</h2></div></div>
+<div class="steps-row"><div class="step"><span>1</span><b>Определите вид</b><small>Обращение, запрос отчёта или оспаривание</small></div><i>→</i><div class="step"><span>2</span><b>Сверьте требования</b><small>Канал, состав сведений, подписант</small></div><i>→</i><div class="step"><span>3</span><b>Подготовьте ответ</b><small>Используйте подходящий шаблон из базы</small></div></div>
+</section>
+<section class="view" id="view-data">
+<div class="page-intro"><div class="eyebrow"><span class="eyebrow-line"></span>ТАБЛИЦА ПОЛНОМОЧИЙ</div><h1>Кому какие данные</h1><p class="lead">Сводка по получателям сведений из переданной базы. Проверяйте основание и условия конкретного запроса.</p></div>
+<div class="data-toolbar"><div class="search-wrap compact-search"><span class="search-icon">⌕</span><input aria-label="Поиск получателя" id="data-search" placeholder="Найти получателя" type="search"/></div><span class="table-caption">СВОДКА ИЗ РАБОЧЕЙ ТАБЛИЦЫ · ЧЕРНОВИК</span></div>
+<div class="data-table-wrap"><table class="data-table"><thead><tr><th>Получатель</th><th>Какие сведения</th><th>Основание в таблице</th><th>Условие / примечание</th></tr></thead><tbody id="data-rows"></tbody></table></div>
+<div class="warning-box table-warning"><span class="warning-icon">!</span><div><b>Таблица помогает найти нужный раздел</b><p>Она не подтверждает право на конкретную выдачу. Сверьте редакцию закона, цель запроса, полномочия и ограничения в первичных документах.</p></div></div>
+</section>
+<section class="view" id="view-court"><div class="page-intro"><div class="eyebrow">РАБОЧИЙ ПОРЯДОК · РЕДАКЦИЯ 12.10.2026</div><h1>Судебная работа</h1><p class="lead">Что делать с повесткой, иском, запросом суда или судебным актом.</p></div><div class="court-layout"><div class="court-main"><div class="court-alert"><b>В первую очередь — срок</b><p>Если срок близко, прошёл или неясен, сразу подключите юриста. Поиск дела выполняйте параллельно.</p></div><div class="court-steps"><details class="court-step" id="court-step-1" open=""><summary><span class="court-number">01</span><span><b>Получите и зарегистрируйте документ</b><small>Сохраните письмо, вложения и сведения о вручении.</small></span><span aria-hidden="true" class="expand-icon">+</span></summary><div class="court-content"><h3>Сохраните всё, что поступило</h3><p>По электронной почте сохраните исходное письмо, адрес отправителя, дату и все вложения. Через Почту России — документ, конверт и сведения о вручении; сделайте сканы.</p><h3>Сначала проверьте сроки</h3><p>Найдите дату заседания и срок ответа. Если срок близко, прошёл или неясен, сразу передайте вопрос юристам; поиск дела выполняйте параллельно.</p><h3>Учтите поступление в день получения</h3><p>Добавьте документ в существующую запись реестра судебных дел либо создайте новую. Укажите дату и канал получения, отправителя, вид документа, суд, известных участников, ближайшие даты и место хранения файлов.</p><p>Номера нет? Запишите «номер пока не известен» и данные истца. Дополните запись после поиска.</p><a class="source-page" href="assets/court-guide.pdf#page=3" rel="noopener" target="_blank">Пример в инструкции · стр. 3 ↗</a></div></details><details class="court-step" id="court-step-2"><summary><span class="court-number">02</span><span><b>Проверьте участников и роль Бюро</b><small>Определите, кто ведёт дело: поддержка или юристы.</small></span><span aria-hidden="true" class="expand-icon">+</span></summary><div class="court-content"><p>В иске и определении проверьте список участников; в определении — также заключительную часть, в повестке — поле «в качестве».</p><div class="role-grid"><div><b>Истец</b><p>Т-БКИ само обращается в суд. Дело ведут юристы; поддержка подключается по их запросу.</p></div><div><b>Ответчик</b><p>К Т-БКИ предъявлены требования. Передайте документы юристам: они определят позицию и действия поддержки.</p></div><div><b>Третье лицо</b><p>Поддержка сопровождает дело и согласует проект ответа с юристами.</p></div></div><p>Если есть только копия иска, роль указал истец. Уточните её по документу суда и карточке дела. Если сведения расходятся или роль не указана, передайте вопрос юристам.</p><a class="source-page" href="assets/court-guide.pdf#page=4" rel="noopener" target="_blank">Пример в инструкции · стр. 4 ↗</a></div></details><details class="court-step" id="court-step-3"><summary><span class="court-number">03</span><span><b>Найдите дело на сайте суда</b><small>Начните с одного известного параметра.</small></span><span aria-hidden="true" class="expand-icon">+</span></summary><div class="court-content"><h3>Выберите нужный суд и форму поиска</h3><p>Откройте официальный сайт суда, указанного в документе. Сверьте название, город и район. Перейдите в «Судебное делопроизводство» → «Поиск информации по делам». Расписание заседаний на одну дату не заменяет поиск по делам.</p><h3>Введите известные сведения</h3><ul><li>Фамилию истца — в поле «Фамилия»; номер дела не обязателен.</li><li>Номер с годом — в поле «Номер дела (материала)».</li><li>Уникальный идентификатор — целиком в одноимённое поле.</li></ul><p>Остальные поля оставьте пустыми. Если совпадений много, добавляйте по одному достоверному фильтру. Сравните ФИО, участников и суть требований: одной фамилии недостаточно.</p><details class="nested-detail"><summary>Дело не найдено — что проверить?</summary><p>Сверьте суд и вид дел. Уберите неизвестные даты, категорию и судью. Проверьте номер, год, фамилию и проверочный код; попробуйте другой известный параметр.</p><p>Копия иска от участника может прийти до регистрации дела в суде. Запишите дату, сайт, параметры и результат поиска. Уточните сведения у суда или отправителя. Отсутствие карточки не отменяет срок из документа.</p></details><a class="source-page" href="assets/court-guide.pdf#page=5" rel="noopener" target="_blank">Пример в инструкции · стр. 5 ↗</a></div></details><details class="court-step" id="court-step-4"><summary><span class="court-number">04</span><span><b>Проверьте карточку дела</b><small>Сверьте роль, события и ближайшие сроки.</small></span><span aria-hidden="true" class="expand-icon">+</span></summary><div class="court-content"><p>Если в реестре уже есть ссылка, откройте её. Сравните суд, номер и год, участников и предмет спора с полученным документом. Откройте «Стороны по делу» и найдите АО «Технологическое бюро кредитных историй». Роль указана в столбце «Вид лица, участвующего в деле».</p><h3>Сверьте движение дела</h3><p>Проверьте даты заседаний и новые документы. Читайте полный текст доступных судебных актов: краткая карточка может не содержать всех требований и сроков.</p><h3>Обновите сведения и определите исполнителя</h3><p>Запишите номер, ссылку, дату проверки, подтверждённую роль и ближайшие сроки. Третье лицо — поддержка с согласованием юристов; истец или ответчик — передайте юристам. Роль неясна или источники расходятся — сохраните оба и передайте вопрос.</p><a class="source-page" href="assets/court-guide.pdf#page=10" rel="noopener" target="_blank">Пример в инструкции · стр. 10 ↗</a></div></details><details class="court-step" id="court-step-5"><summary><span class="court-number">05</span><span><b>Подготовьте и направьте ответ</b><small>Согласуйте проект, направьте копии и проверьте подачу.</small></span><span aria-hidden="true" class="expand-icon">+</span></summary><div class="court-content"><h3>Выберите действие и документ</h3><ul><li>Позиция по иску — отзыв или возражения.</li><li>Просьба к суду — ходатайство, в том числе в составе отзыва.</li><li>Запрос суда — сведения и приложения в согласованном объёме.</li><li>Жалоба или обжалование акта — передайте юристам.</li></ul><h3>Проверьте срок</h3><p>Ориентируйтесь на срок суда. Если его нет, внутренний порядок предусматривает отправку не позднее чем за один рабочий день до заседания. Этот ориентир не заменяет специальные сроки. Если дата неясна или заседание не назначено, согласуйте срок с юристами.</p><h3>Согласуйте и отправьте</h3><p>Укажите суд, номер, роль Т-БКИ, позицию по требованиям, факты, документы и просьбу. До отправки согласуйте проект с юристами. Направьте копии участникам в предусмотренном порядке; сохраните подтверждения.</p><p>Подайте согласованный комплект через сервис на официальном сайте суда либо почтой с описью. Приложите документы и подтверждения направления копий; полномочия подписанта проверьте с юристами.</p><h3>Проверьте результат подачи</h3><p>При электронной подаче сохраните уведомление и результат обработки. При почтовой — квитанцию, опись, трек-номер и сведения о вручении. Факт отправки не подтверждает принятие и приобщение судом. Отклонение или отсутствие подтверждения при близком сроке — сразу сообщите юристам.</p><a class="source-page" href="assets/court-guide.pdf#page=12" rel="noopener" target="_blank">Пример в инструкции · стр. 12 ↗</a></div></details><details class="court-step" id="court-step-6"><summary><span class="court-number">06</span><span><b>Обновите запись и сохраните материалы</b><small>Зафиксируйте результат, исполнителя и следующее действие.</small></span><span aria-hidden="true" class="expand-icon">+</span></summary><div class="court-content"><ul><li>Входящий документ: дата, канал, отправитель, вид, письмо или конверт, приложения.</li><li>Проверка: суд, номер, ссылка, участники, роль Бюро и дата её проверки.</li><li>Сроки и события: срок ответа, заседания, новые акты и результаты.</li><li>Отправка: согласованная версия, даты, способы, подтверждения и результат обработки.</li><li>Следующее действие: что сделать или проверить, к какой дате и кто отвечает.</li></ul><p>Оригиналы храните в бумажном деле, электронные копии и подтверждения — в корпоративной системе документооборота. Внутренний порядок предусматривает хранение не менее пяти лет после вступления в силу итогового акта.</p><p>При новом документе снова проверьте роль, сроки и действие. Отправка ответа завершает текущую задачу, а не всё дело.</p><a class="source-page" href="assets/court-guide.pdf#page=14" rel="noopener" target="_blank">Пример в инструкции · стр. 14 ↗</a></div></details></div></div><aside class="court-aside"><div class="court-outline"><h3>В этой инструкции</h3><button data-step="1"><span>01</span>Получите и зарегистрируйте документ</button><button data-step="2"><span>02</span>Проверьте участников и роль Бюро</button><button data-step="3"><span>03</span>Найдите дело на сайте суда</button><button data-step="4"><span>04</span>Проверьте карточку дела</button><button data-step="5"><span>05</span>Подготовьте и направьте ответ</button><button data-step="6"><span>06</span>Обновите запись и сохраните материалы</button><a class="pdf-button" href="assets/court-guide.pdf" rel="noopener" target="_blank">Полная инструкция со скриншотами ↗</a><a class="pdf-download" download="" href="assets/court-guide.pdf">Скачать PDF · 15 страниц</a></div><div class="court-help"><h3>Нужна помощь?</h3><p>Чат «T-BKI Поддержка Запросы ЦБ».</p><p>Укажите суд, дело, роль Бюро, дату получения и срок. Приложите документы, ссылку и результаты проверки.</p><small>Сначала отвечает бот, знакомый с процессом. При проблеме подключается юрист. Срочный срок явно укажите в сообщении.</small></div></aside></div></section></main>
+</div>
+<div class="modal-backdrop" hidden="" id="modal-backdrop">
+<section aria-labelledby="modal-title" aria-modal="true" class="answer-modal" role="dialog">
+<button aria-label="Закрыть" class="modal-close" id="modal-close">×</button>
+<div class="modal-eyebrow"><span class="status-dot"></span><span id="modal-audience">СЦЕНАРИЙ</span><span class="modal-id" id="modal-id"></span></div>
+<h2 id="modal-title"></h2>
+<div class="modal-query"><span class="mini-label">СИТУАЦИЯ ИЗ БАЗЫ</span><p id="modal-query-text"></p></div>
+<div class="answer-label"><span class="mini-label">ОТВЕТ ИЗ БАЗЫ</span><span class="draft-tag">ПРОВЕРЬТЕ ФАКТЫ ПЕРЕД ОТПРАВКОЙ</span></div>
+<div class="answer-copy" id="modal-answer"></div>
+<div class="modal-actions"><button class="copy-button" id="copy-answer"><span>▢</span>Копировать ответ</button><span class="copy-hint" id="copy-hint">Скопируйте, затем проверьте подстановки</span></div>
+<p class="modal-footnote">Не вставляйте в ассистент паспортные данные, номера договоров и другие сведения клиентов. Прототип работает только с материалами базы.</p>
+</section>
+</div>
+<script src="app.js"></script>
 </body>
 </html>
