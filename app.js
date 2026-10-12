@@ -66,10 +66,10 @@ let modalOpener = null;
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function renderCases(list=cases, mount="#scenario-grid"){
   const root=$(mount); if(!root)return;
-  root.innerHTML=list.length?list.map(c=>`<button class="scenario-card" data-open="${c.id}"><div class="scenario-card-top"><span class="case-index">СЦЕНАРИЙ ${c.number}</span><span class="case-tag">${escapeHtml(c.audience.toUpperCase())}</span></div><h3>${escapeHtml(c.title)}</h3><p>${escapeHtml(c.short)}</p><span class="scenario-open">Открыть ответ <span>→</span></span></button>`).join(""):`<div class="empty-row">По запросу ничего не найдено</div>`;
+  root.innerHTML=list.length?list.map(c=>`<button class="scenario-card" data-open="${c.id}"><div class="scenario-card-top"><span class="case-index">СЦЕНАРИЙ ${c.number}</span><span class="case-tag">${escapeHtml(c.audience.toUpperCase())}</span></div><h3>${escapeHtml(c.title)}</h3><p>${escapeHtml(c.short)}</p><span class="scenario-open">Открыть ответ <span><svg class="ui-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></span></button>`).join(""):`<div class="empty-row">По запросу ничего не найдено</div>`;
 }
 function renderRecent(){
-  $("#recent-list").innerHTML=cases.map(c=>`<button class="recent-row" data-open="${c.id}"><span class="recent-number">${c.number}</span><span class="recent-title">${escapeHtml(c.title)}</span><span class="recent-audience">${escapeHtml(c.audience)}</span><span class="recent-arrow">→</span></button>`).join("");
+  $("#recent-list").innerHTML=cases.map(c=>`<button class="recent-row" data-open="${c.id}"><span class="recent-number">${c.number}</span><span class="recent-title">${escapeHtml(c.title)}</span><span class="recent-audience">${escapeHtml(c.audience)}</span><span class="recent-arrow"><svg class="ui-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></button>`).join("");
 }
 function renderData(query=""){
   const normalized=query.trim().toLocaleLowerCase("ru");
