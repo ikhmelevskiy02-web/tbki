@@ -1,4 +1,4 @@
-const names={overview:'База знаний',court:'Судебная работа',pd:'ПД',contracts:'Договорная работа'};
+const names={overview:'База знаний',court:'Судебная работа',pd:'ПД',contracts:'Договорная работа',users:'Пользователи'};
 function showView(){
   const hash=location.hash.slice(1);
   const key=Object.hasOwn(names,hash)?hash:'overview';
