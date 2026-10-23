@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="База знаний Т-БКИ: судебная работа, ПД, договорная работа и пользователи кредитных историй.">
+  <meta name="description" content="База знаний Т-БКИ: судебная работа, персональные данные, договорная работа и пользователи кредитных историй.">
   <title>База знаний Т-БКИ</title>
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
   <script src="app.js?v=3" defer></script>
 </head>
 <body>
@@ -35,7 +35,37 @@
         </div>
       </section>
       <section class="view" id="view-court" aria-labelledby="court-title" hidden><h1 id="court-title">Судебная работа</h1></section>
-      <section class="view" id="view-pd" aria-labelledby="pd-title" hidden><h1 id="pd-title">ПД</h1></section>
+      <section class="view" id="view-pd" aria-labelledby="pd-title" hidden>
+        <div class="eyebrow">БАЗА ЗНАНИЙ Т-БКИ</div>
+        <h1 id="pd-title">Персональные данные</h1>
+        <p class="pd-lead">Краткая карта основных процессов обработки персональных данных в Т-БКИ. Состав сведений зависит от конкретного действия и предоставленных документов.</p>
+        <div class="pd-grid">
+          <article class="pd-card">
+            <h2>Вход в личный кабинет</h2>
+            <p>Доступ осуществляется через T-ID или ЕСИА. Для идентификации используются ФИО, дата рождения, пол, гражданство, паспортные и контактные данные, ИНН и СНИЛС.</p>
+          </article>
+          <article class="pd-card">
+            <h2>Получение кредитного отчёта</h2>
+            <p>Субъект направляет запрос в личном кабинете и скачивает кредитный отчёт. Для формирования отчёта обрабатываются идентификаторы субъекта и сведения кредитной истории. Отчёт предоставляется по запросу субъекта в соответствии со статьями 6 и 8 Федерального закона № 218-ФЗ «О кредитных историях».</p>
+          </article>
+          <article class="pd-card">
+            <h2>Телефонные обращения</h2>
+            <p>При рассмотрении обращения используются ФИО, номер телефона и сведения, сообщённые в разговоре. Разговор записывается; его содержание может включать другие персональные данные.</p>
+          </article>
+          <article class="pd-card">
+            <h2>Запись в офис</h2>
+            <p>Для записи и связи используются ФИО и номер телефона. Для оформления пропуска Т-Банк обрабатывает ФИО и паспортные данные.</p>
+          </article>
+          <article class="pd-card pd-card-wide">
+            <h2>Запросы финансовых управляющих</h2>
+            <p>Запросы об изменении кредитной истории должника могут содержать персональные данные должника, финансового управляющего и представителей. Состав данных зависит от запроса и приложений к нему.</p>
+          </article>
+        </div>
+        <section class="pd-board" aria-labelledby="pd-board-title">
+          <div><div class="eyebrow">МАТЕРИАЛЫ</div><h2 id="pd-board-title">Схема процессов</h2></div>
+          <a class="pd-board-link" href="https://whiteboard.t-tech.team/app/board/ece5d74a3a20384f870c" target="_blank" rel="noopener noreferrer">Открыть борд по ПД <span aria-hidden="true">↗</span></a>
+        </section>
+      </section>
       <section class="view" id="view-contracts" aria-labelledby="contracts-title" hidden><h1 id="contracts-title">Договорная работа</h1></section>
       <section class="view" id="view-users" aria-labelledby="users-title" hidden>
         <div class="eyebrow">БАЗА ЗНАНИЙ Т-БКИ</div>
