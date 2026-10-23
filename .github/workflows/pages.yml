@@ -27,7 +27,7 @@ jobs:
       - name: Prepare site
         run: |
           mkdir -p _site/assets
-          cp index.html styles.css _site/
+          cp index.html styles.css app.js _site/
           cp assets/tbki-logo.svg _site/assets/
           touch _site/.nojekyll
       - name: Upload Pages artifact
