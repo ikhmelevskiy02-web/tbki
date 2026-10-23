@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="База знаний Т-БКИ: судебная работа, ПД и договорная работа.">
+  <meta name="description" content="База знаний Т-БКИ: судебная работа, ПД, договорная работа и пользователи кредитных историй.">
   <title>База знаний Т-БКИ</title>
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
   <script src="app.js?v=3" defer></script>
 </head>
 <body>
@@ -37,7 +37,48 @@
       <section class="view" id="view-court" aria-labelledby="court-title" hidden><h1 id="court-title">Судебная работа</h1></section>
       <section class="view" id="view-pd" aria-labelledby="pd-title" hidden><h1 id="pd-title">ПД</h1></section>
       <section class="view" id="view-contracts" aria-labelledby="contracts-title" hidden><h1 id="contracts-title">Договорная работа</h1></section>
-      <section class="view" id="view-users" aria-labelledby="users-title" hidden><h1 id="users-title">Пользователи</h1></section>
+      <section class="view" id="view-users" aria-labelledby="users-title" hidden>
+        <div class="eyebrow">БАЗА ЗНАНИЙ Т-БКИ</div>
+        <h1 id="users-title">Пользователи</h1>
+        <p class="users-lead">Кому и на каких условиях Т-БКИ предоставляет кредитные отчёты и сведения из кредитных историй.</p>
+        <p class="users-updated">Актуально на 23 октября 2026 года · Федеральный закон № 218-ФЗ «О кредитных историях»</p>
+
+        <section class="users-section" aria-labelledby="users-business-title">
+          <h2 id="users-business-title">Организации и индивидуальные предприниматели</h2>
+          <div class="users-table-wrap">
+            <table class="users-table">
+              <thead><tr><th scope="col">Получатель</th><th scope="col">Состав сведений</th><th scope="col">Условия</th><th scope="col">Основание</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Пользователь кредитной истории</th><td>Титульная, основная и информационная части. Закрытая часть не предоставляется.</td><td>Запрос, договор с БКИ и действующее согласие субъекта на получение кредитного отчёта.</td><td><a href="https://www.consultant.ru/document/cons_doc_LAW_51043/f74f8426f1d26cfd87f4b4759ae393fe8f6e1a0b/" target="_blank" rel="noopener noreferrer">п. 1 ч. 1, ч. 2, 9–12 ст. 6</a></td></tr>
+                <tr><th scope="row">Юридическое лицо или ИП без согласия субъекта</th><td>Только информационная часть.</td><td>Запрос в целях выдачи займа (кредита). Срок предоставления — не более пяти рабочих дней.</td><td><a href="https://www.consultant.ru/document/cons_doc_LAW_51043/f74f8426f1d26cfd87f4b4759ae393fe8f6e1a0b/" target="_blank" rel="noopener noreferrer">ч. 9.1 ст. 6</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="users-section" aria-labelledby="users-other-title">
+          <h2 id="users-other-title">Иные получатели</h2>
+          <div class="users-table-wrap">
+            <table class="users-table">
+              <thead><tr><th scope="col">Получатель</th><th scope="col">Состав сведений</th><th scope="col">Условия</th><th scope="col">Основание</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Субъект кредитной истории</th><td>Все четыре части: титульная, основная, дополнительная (закрытая) и информационная.</td><td>Запрос субъекта.</td><td><a href="https://www.consultant.ru/document/cons_doc_LAW_51043/f74f8426f1d26cfd87f4b4759ae393fe8f6e1a0b/" target="_blank" rel="noopener noreferrer">п. 2 ч. 1 ст. 6</a></td></tr>
+                <tr><th scope="row">Опекун, попечитель, иной законный представитель или представитель физического лица</th><td>Все четыре части.</td><td>Запрос в отношении представляемого субъекта — физического лица; для представителя требуется нотариальная доверенность.</td><td><a href="https://www.consultant.ru/document/cons_doc_LAW_51043/f74f8426f1d26cfd87f4b4759ae393fe8f6e1a0b/" target="_blank" rel="noopener noreferrer">п. 3 ч. 1 ст. 6</a></td></tr>
+                <tr><th scope="row">Суд (судья)</th><td>Все четыре части.</td><td>Запрос по делу, находящемуся в производстве суда (судьи).</td><td><a href="https://www.consultant.ru/document/cons_doc_LAW_51043/f74f8426f1d26cfd87f4b4759ae393fe8f6e1a0b/" target="_blank" rel="noopener noreferrer">п. 4 ч. 1 ст. 6</a></td></tr>
+                <tr><th scope="row">Орган предварительного следствия</th><td>Все четыре части.</td><td>Запрос по уголовному делу, находящемуся в его производстве, с согласия руководителя следственного органа.</td><td><a href="https://www.consultant.ru/document/cons_doc_LAW_51043/f74f8426f1d26cfd87f4b4759ae393fe8f6e1a0b/" target="_blank" rel="noopener noreferrer">п. 4 ч. 1 ст. 6</a></td></tr>
+                <tr><th scope="row">ФССП России</th><td>Титульная и основная части.</td><td>Запрос по делу, находящемуся в производстве.</td><td><a href="https://www.consultant.ru/document/cons_doc_LAW_51043/f74f8426f1d26cfd87f4b4759ae393fe8f6e1a0b/" target="_blank" rel="noopener noreferrer">п. 5 ч. 1 ст. 6</a></td></tr>
+                <tr><th scope="row">Нотариус</th><td>Сведения о наследодателе из титульной части, о непогашенных обязательствах из основной части и об их источниках из закрытой части.</td><td>Для осуществления полномочий по наследственному делу; машиночитаемый электронный запрос и электронный ответ.</td><td><a href="https://www.consultant.ru/document/cons_doc_LAW_51043/f74f8426f1d26cfd87f4b4759ae393fe8f6e1a0b/" target="_blank" rel="noopener noreferrer">п. 6 ч. 1 ст. 6</a></td></tr>
+                <tr><th scope="row">Банк России</th><td>Все четыре части.</td><td>Запрос Банка России; формат и порядок предоставления устанавливаются Банком России.</td><td><a href="https://www.consultant.ru/document/cons_doc_LAW_51043/f74f8426f1d26cfd87f4b4759ae393fe8f6e1a0b/" target="_blank" rel="noopener noreferrer">п. 7 ч. 1 ст. 6</a></td></tr>
+                <tr><th scope="row">Арбитражный управляющий</th><td>Титульная и дополнительная (закрытая) части.</td><td>Запрос управляющего, утверждённого в деле о банкротстве субъекта кредитной истории.</td><td><a href="https://www.consultant.ru/document/cons_doc_LAW_51043/f74f8426f1d26cfd87f4b4759ae393fe8f6e1a0b/" target="_blank" rel="noopener noreferrer">п. 8 ч. 1 ст. 6</a></td></tr>
+                <tr><th scope="row">Должностные лица, определённые Президентом РФ</th><td>Все четыре части.</td><td>Запрос при проверке по законодательству о противодействии коррупции.</td><td><a href="https://www.consultant.ru/document/cons_doc_LAW_51043/f74f8426f1d26cfd87f4b4759ae393fe8f6e1a0b/" target="_blank" rel="noopener noreferrer">п. 9 ч. 1 ст. 6</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <div class="users-note"><strong>Статус квалифицированного БКИ.</strong> По <a href="https://www.cbr.ru/registries/ckki/" target="_blank" rel="noopener noreferrer">государственному реестру Банка России</a> Т-БКИ не имеет этого статуса. Поэтому отдельные запросы о среднемесячных платежах, самозапрете и сведениях для предупреждения мошенничества по статьям 6.2–6.4 закона здесь не указаны. Сведения о запрете могут входить в обычный кредитный отчёт при соблюдении условий ч. 5.1 ст. 6.</div>
+        <p class="users-future">С 26 ноября 2026 года меняются правила предоставления сведений ФССП России; перед применением этого пункта после указанной даты потребуется обновить страницу.</p>
+      </section>
     </main>
   </div>
 </body>
